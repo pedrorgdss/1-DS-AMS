@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedro Rodrigues Pimentel | Dev</title>
+    <style>
+        :root {
+            --roxo-primario: #6a0dad;
+            --roxo-secundario: #8a2be2;
+            --roxo-claro: #b19cd9;
+            --preto: #121212;
+            --cinza: #1e1e1e;
+            --branco: #f0f0f0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: all 0.3s ease;
+        }
+        
+        body {
+            background-color: var(--preto);
+            color: var(--branco);
+            overflow-x: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--roxo-primario), var(--preto));
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--roxo-claro), white);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 10px rgba(106, 13, 173, 0.5);
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+        
+        .nav-links a {
+            color: var(--branco);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            border: 1px solid var(--roxo-primario);
+            transition: all 0.3s;
+        }
+        
+        .nav-links a:hover {
+            background-color: var(--roxo-primario);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(106, 13, 173, 0.4);
+        }
+        
+        section {
+            padding: 3rem 10%;
+            border-bottom: 1px solid var(--cinza);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--roxo-claro);
+            position: relative;
+            display: inline-block;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(to right, var(--roxo-primario), transparent);
+        }
+        
+        .card {
+            background-color: var(--cinza);
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border-left: 3px solid var(--roxo-primario);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(106, 13, 173, 0.3);
+        }
+        
+        .card h3 {
+            color: var(--roxo-claro);
+            margin-bottom: 1rem;
+        }
+        
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .skill {
+            background-color: var(--roxo-primario);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .project-card {
+            background-color: var(--cinza);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s;
+            position: relative;
+        }
+        
+        .project-card:hover {
+            transform: scale(1.03);
+        }
+        
+        .project-img {
+            height: 200px;
+            background-color: var(--roxo-primario);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+        }
+        
+        .project-info {
+            padding: 1.5rem;
+        }
+        
+        .project-info h3 {
+            margin-bottom: 0.5rem;
+        }
+        
+        .project-info p {
+            opacity: 0.8;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .project-link {
+            display: inline-block;
+            color: var(--roxo-claro);
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .project-link::after {
+            content: '→';
+            margin-left: 5px;
+            transition: margin-left 0.3s;
+        }
+        
+        .project-link:hover::after {
+            margin-left: 10px;
+        }
+        
+        footer {
+            background-color: var(--cinza);
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+        
+        .contact-links a {
+            color: var(--branco);
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        
+        .contact-links a:hover {
+            color: var(--roxo-claro);
+        }
+        
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .floating {
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        /* Dark mode toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            background: var(--roxo-primario);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="particles" id="particles-js"></div>
+        <div class="header-content">
+            <h1 class="floating">Pedro Rodrigues Pimentel</h1>
+            <p class="tagline">Desenvolvedor de Sistemas | Java & JavaScript</p>
+            <div class="nav-links">
+                <a href="#sobre">Sobre</a>
+                <a href="#habilidades">Habilidades</a>
+                <a href="#projetos">Projetos</a>
+                <a href="#contato">Contato</a>
+            </div>
+        </div>
+    </header>
+    
+    <button class="theme-toggle" id="themeToggle">🌙</button>
+    
+    <section id="sobre">
+        <div class="container">
+            <h2>Sobre Mim</h2>
+            <div class="card">
+                <p>Olá! Eu sou Pedro Rodrigues Pimentel, estudante de Desenvolvimento de Sistemas na ETEC da Zona Leste (AMS).</p>
+                <p>Atualmente, estou focado em aprimorar minhas habilidades em Java e JavaScript, desenvolvendo projetos pessoais e colaborando em iniciativas com empresas como IBM e Venturus.</p>
+                <p>Minha paixão por tecnologia me motiva a aprender constantemente e enfrentar novos desafios no mundo do desenvolvimento de software.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section id="habilidades">
+        <div class="container">
+            <h2>Habilidades</h2>
+            <div class="card">
+                <h3>Linguagens de Programação</h3>
+                <div class="skills-container">
+                    <span class="skill">Java</span>
+                    <span class="skill">JavaScript</span>
+                    <span class="skill">HTML5</span>
+                    <span class="skill">CSS3</span>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>Frameworks & Bibliotecas</h3>
+                <div class="skills-container">
+                    <span class="skill">Node.js</span>
+                    <span class="skill">React</span>
+                    <span class="skill">Spring Boot</span>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>Ferramentas & Tecnologias</h3>
+                <div class="skills-container">
+                    <span class="skill">Git</span>
+                    <span class="skill">VS Code</span>
+                    <span class="skill">Apache NetBeans</span>
+                    <span class="skill">Figma</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="projetos">
+        <div class="container">
+            <h2>Projetos</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-img" style="background: linear-gradient(135deg, #6a0dad, #4b0082);">
+                        IBM
+                    </div>
+                    <div class="project-info">
+                        <h3>Projeto IBM</h3>
+                        <p>Colaboração em projetos de desenvolvimento de software com a IBM, aplicando conceitos de Java e boas práticas de programação.</p>
+                        <a href="#" class="project-link">Ver detalhes</a>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-img" style="background: linear-gradient(135deg, #8a2be2, #9932cc);">
+                        Venturus
+                    </div>
+                    <div class="project-info">
+                        <h3>Projeto Venturus</h3>
+                        <p>Participação em iniciativas de desenvolvimento com a Venturus, focando em soluções inovadoras com JavaScript.</p>
+                        <a href="#" class="project-link">Ver detalhes</a>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-img" style="background: linear-gradient(135deg, #9370db, #8a2be2);">
+                        Pessoal
+                    </div>
+                    <div class="project-info">
+                        <h3>Projetos Pessoais</h3>
+                        <p>Diversos projetos desenvolvidos para estudo e prática, incluindo aplicações web, sistemas e automações.</p>
+                        <a href="#" class="project-link">Ver detalhes</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="educacao">
+        <div class="container">
+            <h2>Formação Acadêmica</h2>
+            <div class="card">
+                <h3>ETEC da Zona Leste - AMS</h3>
+                <p>Desenvolvimento de Sistemas</p>
+                <p>Cursando</p>
+            </div>
+        </div>
+    </section>
+    
+    <footer id="contato">
+        <div class="container">
+            <h2>Vamos conversar!</h2>
+            <p>Estou sempre aberto a novas oportunidades e colaborações.</p>
+            <div class="contact-links">
+                <a href="mailto:seuemail@example.com" title="Email">✉️</a>
+                <a href="https://github.com/seuusuario" target="_blank" title="GitHub">💻</a>
+                <a href="https://linkedin.com/in/seuusuario" target="_blank" title="LinkedIn">🔗</a>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Efeito de partículas
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.particlesJS) {
+                particlesJS('particles-js', {
+                    "particles": {
+                        "number": {
+                            "value": 80,
+                            "density": {
+                                "enable": true,
+                                "value_area": 800
+                            }
+                        },
+                        "color": {
+                            "value": "#b19cd9"
+                        },
+                        "shape": {
+                            "type": "circle",
+                            "stroke": {
+                                "width": 0,
+                                "color": "#000000"
+                            },
+                            "polygon": {
+                                "nb_sides": 5
+                            }
+                        },
+                        "opacity": {
+                            "value": 0.5,
+                            "random": false,
+                            "anim": {
+                                "enable": false,
+                                "speed": 1,
+                                "opacity_min": 0.1,
+                                "sync": false
+                            }
+                        },
+                        "size": {
+                            "value": 3,
+                            "random": true,
+                            "anim": {
+                                "enable": false,
+                                "speed": 40,
+                                "size_min": 0.1,
+                                "sync": false
+                            }
+                        },
+                        "line_linked": {
+                            "enable": true,
+                            "distance": 150,
+                            "color": "#6a0dad",
+                            "opacity": 0.4,
+                            "width": 1
+                        },
+                        "move": {
+                            "enable": true,
+                            "speed": 2,
+                            "direction": "none",
+                            "random": false,
+                            "straight": false,
+                            "out_mode": "out",
+                            "bounce": false,
+                            "attract": {
+                                "enable": false,
+                                "rotateX": 600,
+                                "rotateY": 1200
+                            }
+                        }
+                    },
+                    "interactivity": {
+                        "detect_on": "canvas",
+                        "events": {
+                            "onhover": {
+                                "enable": true,
+                                "mode": "grab"
+                            },
+                            "onclick": {
+                                "enable": true,
+                                "mode": "push"
+                            },
+                            "resize": true
+                        },
+                        "modes": {
+                            "grab": {
+                                "distance": 140,
+                                "line_linked": {
+                                    "opacity": 1
+                                }
+                            },
+                            "bubble": {
+                                "distance": 400,
+                                "size": 40,
+                                "duration": 2,
+                                "opacity": 8,
+                                "speed": 3
+                            },
+                            "repulse": {
+                                "distance": 200,
+                                "duration": 0.4
+                            },
+                            "push": {
+                                "particles_nb": 4
+                            },
+                            "remove": {
+                                "particles_nb": 2
+                            }
+                        }
+                    },
+                    "retina_detect": true
+                });
+            }
+            
+            // Botão de tema escuro/claro
+            const themeToggle = document.getElementById('themeToggle');
+            themeToggle.addEventListener('click', () => {
+                document.body.classList.toggle('light-theme');
+                themeToggle.textContent = document.body.classList.contains('light-theme') ? '🌞' : '🌙';
+            });
+            
+            // Suavizar rolagem para âncoras
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // Animação ao rolar
+            const animateOnScroll = () => {
+                const cards = document.querySelectorAll('.card, .project-card');
+                cards.forEach(card => {
+                    const cardPosition = card.getBoundingClientRect().top;
+                    const screenPosition = window.innerHeight / 1.3;
+                    
+                    if (cardPosition < screenPosition) {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }
+                });
+            };
+            
+            // Inicializar opacidade para animação
+            document.querySelectorAll('.card, .project-card').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            });
+            
+            window.addEventListener('scroll', animateOnScroll);
+            animateOnScroll(); // Executar uma vez ao carregar
+        });
+    </script>
+</body>
+</html>
